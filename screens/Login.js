@@ -15,6 +15,10 @@ export default function Login({navigation}) {
        })
     }
 
+    const cadastrar = () => {
+        navigation.navigate("Cadastro");
+    }
+
     return (
         <View style={[styles.container, specificStyle.specificContainer]}>
             <Text h4>Entre no Temtudaki!</Text>
@@ -23,6 +27,7 @@ export default function Login({navigation}) {
                 leftIcon={{ type: 'font-awesome', name: 'envelope' }}
                 onChangeText={value => setEmail(value)}
                 keyboardType="email-address"
+                
             />
             <Input
                 placeholder="Sua Senha"
@@ -34,10 +39,24 @@ export default function Login({navigation}) {
                 icon={
                     <Icon
                         name="check"
+                        size={15}
                         color="white" />
                 }
-                onPress={() => entrar()}
                 title="Entrar"
+                onPress={() => entrar()}
+                buttonStyle = {specificStyle.button}
+            />
+
+            <Button
+                icon={
+                    <Icon
+                        name="home"
+                        size={15}
+                        color="white" />
+                }
+                title=" Cadastrar"
+                onPress={() => cadastrar()}
+                buttonStyle={specificStyle.button}
             />
         </View>
     );
@@ -46,6 +65,13 @@ export default function Login({navigation}) {
 
 const specificStyle = StyleSheet.create({
     specificContainer: {
-        //  backgroundColor: "#000"
-    }
+        backgroundColor: "#fff"
+    },
+    button: {
+        width: "100%",
+        marginTop: 10
+    },
+    /* text: {
+        marginTop: 50
+    } */
 })
