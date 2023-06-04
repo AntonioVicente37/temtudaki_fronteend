@@ -21,7 +21,7 @@ export default function Login({navigation}) {
 
     return (
         <View style={[styles.container, specificStyle.specificContainer]}>
-            <Text h4>Entre no Temtudaki!</Text>
+            <Text h4 style={styles.text}>Entre no Temtudaki!</Text>
             <Input
                 placeholder="E-mail"
                 leftIcon={{ type: 'font-awesome', name: 'envelope' }}
@@ -69,9 +69,10 @@ const specificStyle = StyleSheet.create({
     },
     button: {
         width: "100%",
-        marginTop: 10
+        marginTop: 10,
+        paddingRight: 100
     },
-    /* text: {
-        marginTop: 50
-    } */
+    text: {
+        lineHeight: "60%"
+    }
 })

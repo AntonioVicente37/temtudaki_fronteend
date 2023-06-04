@@ -109,7 +109,8 @@ const specificStyle = StyleSheet.create({
     },
     button: {
         width: "100%",
-        marginTop: 10
+        marginTop: 10,
+        paddingRight: 100
     },
     /* text: {
         marginTop: 50
