@@ -21,7 +21,9 @@ export default function Login({navigation}) {
 
     return (
         <View style={[styles.container, specificStyle.specificContainer]}>
-            <Text h4 style={styles.text}>Entre no Temtudaki!</Text>
+            <View style={styles.text}></View>
+            <Text h4 >Entre no Temtudaki!</Text>  
+                      
             <Input
                 placeholder="E-mail"
                 leftIcon={{ type: 'font-awesome', name: 'envelope' }}
@@ -73,6 +75,6 @@ const specificStyle = StyleSheet.create({
         paddingRight: 100
     },
     text: {
-        lineHeight: "60%"
+        //marginBottom: 105
     }
 })
