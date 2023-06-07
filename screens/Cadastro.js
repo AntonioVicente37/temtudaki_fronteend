@@ -1,8 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { Text, Input, Button, Icon, CheckBox } from '@rneui/themed';
 import { useState } from 'react';
 import styles from '../style/MainStyle';
 import { TextInputMask } from 'react-native-masked-text';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Cadastro({ navigation }) {
 
@@ -48,7 +49,11 @@ export default function Cadastro({ navigation }) {
     }
 
     return (
-        <View style={[styles.container, specificStyle.specificContainer]}>
+        <KeyboardAvoidingView 
+        behavior={Platform.OS == "ios" ? "padding": "height"}
+        style={[styles.container, specificStyle.specificContainer]}
+        keyboardVerticalOffset={80}>
+            <ScrollView style={{width: "100%"}}> 
             <Text h4>Cadastra-se</Text>
             <Input
                 placeholder="E-mail"
@@ -65,6 +70,43 @@ export default function Cadastro({ navigation }) {
                 onChangeText={value => setNome(value)}
                 errorMessage={errorNome}
             />
+
+             <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
+            <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
+            <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
+            <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
+            <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
+            <Input
+                placeholder="Nome"
+                onChangeText={value => setNome(value)}
+                errorMessage={errorNome}
+            />
+
 
            <View style={styles.containerMask}>
             <TextInputMask 
@@ -121,14 +163,16 @@ export default function Cadastro({ navigation }) {
                 onPress={() => salvar()}
                 buttonStyle={specificStyle.button}
             />
-        </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 }
 
 
 const specificStyle = StyleSheet.create({
     specificContainer: {
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        padding: 10
     },
     button: {
         width: "100%",
