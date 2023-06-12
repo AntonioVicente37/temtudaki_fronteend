@@ -10,12 +10,15 @@ export default function Cadastro({ navigation }) {
     const [email, setEmail] = useState(null);
     const [nome, setNome] = useState(null);
     const [cpf, setCpf] = useState(null);
+    const [senha, setSenha] = useState(null);
     const [telefone, setTelefone] = useState(null); 
     const [isSelected, setSelected] = useState(null);
     const [errorEmail, setErrorEmail] = useState(null);
     const [errorNome, setErrorNome] = useState(null);
     const [errorCpf, setErrorCpf] = useState(null);
-    const [errorTelefone, setErrorTelefone] = useState(null); 
+    const [errorTelefone, setErrorTelefone] = useState(null);
+    const [errorSenha, setErrorSenha] = useState(null);
+    const [IsLoading, setLoading] = useState(false);
 
     let cpfField = null;
     let telefoneField = null;
@@ -24,6 +27,7 @@ export default function Cadastro({ navigation }) {
         let error = false;
         setErrorEmail(null);
         setErrorCpf(null);
+        setErrorSenha(null);
 
         const re =  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
@@ -39,12 +43,34 @@ export default function Cadastro({ navigation }) {
             setErrorTelefone("Preencha o seu telefone corretamente");
             error = true;
         }
+        if (senha == null) {
+            setErrorSenha("Preencha a senha");
+            error = true;
+        }
         return !error
     }
 
     const salvar = () => {
        if(validar()){
-           console.log("Salvou")
+           setLoading(true)
+
+           let data = {
+            email: email,
+            cpf: cpf,
+            telefone: telefone,
+            senha: senha
+           }
+
+           usuarioService.cadastrar(data)
+           .then((response) =>{
+                setLoading(false)
+                console.log(response.data)
+           })
+           .catch((error) =>{
+            setLoading(false)
+            console.log(error)
+            console.log("Deu erro")
+           })
        }
     }
 
@@ -64,49 +90,12 @@ export default function Cadastro({ navigation }) {
                 keyboardType="email-address"
                 errorMessage={errorEmail}
             />
-
+           
             <Input
                 placeholder="Nome"
                 onChangeText={value => setNome(value)}
                 errorMessage={errorNome}
             />
-
-             <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
-            <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
-            <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
-            <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
-            <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
-            <Input
-                placeholder="Nome"
-                onChangeText={value => setNome(value)}
-                errorMessage={errorNome}
-            />
-
 
            <View style={styles.containerMask}>
             <TextInputMask 
@@ -142,6 +131,13 @@ export default function Cadastro({ navigation }) {
             </View>
             <Text style={styles.errorMessage}>{errorTelefone}</Text>           
             
+            <Input
+                placeholder="Senha"
+                onChangeText={value => setSenha(value)}
+                errorMessage={errorSenha}
+                secureTextEntry = {true}
+            />
+
             <CheckBox
                 title="Eu aceito os termos de uso"
                 checkedIcon= "check"
