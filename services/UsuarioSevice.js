@@ -1,9 +1,9 @@
 import axios from "axios"
 
 class UsuarioService{
+
     async cadastrar(data){
         return axios({
-
             url: "http://localhost:3000/usuario/cadastrar",
             method: "POST",
             timeout: 5000,
@@ -18,3 +18,5 @@ class UsuarioService{
         })
     }
 }
+const usuarioService = new UsuarioService()
+export default usuarioService

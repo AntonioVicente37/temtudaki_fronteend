@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from '../style/MainStyle';
 import { TextInputMask } from 'react-native-masked-text';
 import { ScrollView } from 'react-native-gesture-handler';
+import usuarioService from '../services/UsuarioSevice';
 
 export default function Cadastro({ navigation }) {
 
@@ -57,6 +58,7 @@ export default function Cadastro({ navigation }) {
            let data = {
             email: email,
             cpf: cpf,
+            nome: nome,
             telefone: telefone,
             senha: senha
            }
